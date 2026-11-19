@@ -31,6 +31,7 @@
   var img = function (n) { return 'assets/img/' + n + '.jpg'; };
   var wa = function (msg) { return 'https://wa.me/' + K.whatsapp + (msg ? '?text=' + encodeURIComponent(msg) : ''); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var pageUrl = function (id) { return 'property-' + id + '.html'; };
   var byId = function (id) { return K.listings.filter(function (l) { return l.id === id; })[0]; };
   var priceText = function (l) {
     if (l.status === 'sold') return 'تم البيع';
@@ -74,7 +75,7 @@
   /* ---------- card ---------- */
   var card = function (l, opts) {
     opts = opts || {};
-    var href = 'property.html?id=' + l.id;
+    var href = pageUrl(l.id);
     var photos = (l.photos || []).slice(0, opts.single ? 1 : 5);
     var sold = l.status === 'sold';
     var slides = photos.length
@@ -212,7 +213,7 @@
   });
 
   window.KHUI = {
-    I: I, $: $, $$: $$, fmt: fmt, img: img, wa: wa, esc: esc, byId: byId,
+    I: I, $: $, $$: $$, href: pageUrl, fmt: fmt, img: img, wa: wa, esc: esc, byId: byId,
     priceText: priceText, priceSub: priceSub, metaParts: metaParts, place: place, sizeText: sizeText, floorText: floorText,
     statusLabel: statusLabel, card: card, wireCards: wireCards, wireRails: wireRails, mountChrome: mountChrome,
     wireReveal: wireReveal, toast: toast, isSaved: isSaved, saved: function () { return saved.slice(); }, syncSaved: syncSaved
