@@ -93,7 +93,7 @@
             (l.features && l.features.length ? '<h3 style="font-size:17px;margin-top:28px">المزايا</h3><ul class="features">' + l.features.map(function (f) { return '<li>' + I.check + '<span>' + U.esc(f) + '</span></li>'; }).join('') + '</ul>' : '') +
           '</section>' +
           (l.video ? '<section class="pd-sec" id="tour"><h2>جولة فيديو</h2><a class="tour" href="' + l.video + '" target="_blank" rel="noopener"><img src="' + U.img(photos[photos.length - 1] || photos[0]) + '" alt="" loading="lazy"><span class="tour__play">' + I.play + '</span><span class="tour__cap">شاهد الجولة الكاملة على إنستغرام</span></a></section>' : '') +
-          (K.areas[l.area] ? '<section class="pd-sec" id="location" style="border-bottom:none"><h2>الموقع</h2><p style="margin-bottom:16px">' + U.esc(U.place(l)) + ' · ' + K.areas[l.area].blurb + '. العنوان الدقيق بيتحدد وقت المعاينة.</p><div class="pd-map" id="pd-map"></div></section>' : '') +
+          (K.areas[l.area] ? '<section class="pd-sec" id="location" style="border-bottom:none"><h2>الموقع</h2><p style="margin-bottom:16px">' + U.esc(U.place(l)) + ' · ' + K.areas[l.area].blurb + '. العنوان الدقيق بيتحدد وقت المعاينة.</p><div class="pd-map" id="pd-map" dir="ltr"></div></section>' : '') +
         '</div>' +
         '<aside class="agent" aria-label="تواصل بخصوص العقار">' +
           '<div class="agent__top"><span class="brand__mark">KH</span><div><b>فريق KH Real Estate</b><span>مكتب مشروع دمر · بنرد عادةً بنفس اليوم</span></div></div>' +
@@ -173,7 +173,7 @@
   if (a && $('#pd-map')) {
     if (window.L) {
       var m = L.map('pd-map', { scrollWheelZoom: false }).setView(a.coords, 14);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 18, subdomains: 'abcd', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(m);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(m);
       L.circle(a.coords, { radius: 600, color: '#B8945A', weight: 2, fillColor: '#B8945A', fillOpacity: .15 }).addTo(m);
     } else { $('#pd-map').innerHTML = '<p class="map-note" style="padding:20px">الخريطة بحاجة اتصال بالإنترنت.</p>'; }
   }
